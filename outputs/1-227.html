@@ -1,0 +1,1103 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=9,IE=edge,IE=7,IE=8,chrome=1">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<title></title>
+<link href="/tccmoapply/maliportal/css/default_content.css" rel="stylesheet"  type="text/css">
+<link rel="stylesheet" href="/tccmoapply/maliportal/css/color.css">
+<link rel="stylesheet" type="text/css" href="/tccmoapply/maliportal/css/magnific-popup.css">
+<link rel="stylesheet" href="/tccmoapply/maliportal/css/portal_style.css">
+<link rel="stylesheet" type="text/css" href="/tccmoapply/maliportal/css/popWindow.css">
+<link href="/tccmoapply/maliportal/css/slick.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/tccmoapply/platform/public/js/platform_ajax.js"></script>
+<script type="text/javascript" src="/tccmoapply/platform/public/js/platform_util.js"></script>
+<script type="text/javascript" src="/tccmoapply/platform/public/js/platform_Grid.js"></script>
+<script type="text/javascript" src="/tccmoapply/platform/public/js/platform_pageControl.js"></script>
+<script type="text/javascript" src="/tccmoapply/platform/public/js/platform_Rowmaintain.js"></script>	
+<script type="text/javascript" src="/tccmoapply/platform/public/js/HotKey.js"></script>
+<script type="text/javascript" src="/tccmoapply/portal/js/learn_common.js"></script>
+<script type="text/javascript" src="/tccmoapply/platform/public/js/popupWindow.js"></script>
+	<!--[if lt IE 9]>
+		<script type="text/javascript" src="/tccmoapply/maliportal/js/html5shiv.min.js"></script>
+		<script type="text/javascript" src="/tccmoapply/maliportal/js/respond.js"></script>
+	<![endif]-->
+<script type="text/javascript" src="/tccmoapply/maliportal/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="/tccmoapply/maliportal/js/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="/tccmoapply/maliportal/js/slick.min.js"></script>
+<script type="text/javascript" src="/tccmoapply/maliportal/js/imgLiquid-min.js"></script>
+<script type="text/javascript" src="/tccmoapply/maliportal/js/portal_script.js"></script>
+  
+<script type="text/javascript" src="/tccmoapply/platform/public/js/jquery/jquery.ui.datepicker.js"></script>
+<script type="text/javascript" src="/tccmoapply/platform/public/js/jquery/jquery.ui.datepicker-zh-TW.js"></script>
+
+</head>
+
+<input type="hidden" id="P_SYSID"   name="P_SYSID"  value="TCCMOAPPLY"  >
+
+
+<script >
+<!--
+  var ContextPath="/tccmoapply";
+  var rootIdNode="";
+  var CodeID = "";
+  var CodeName = "";
+  var SYSID = document.all("P_SYSID").value;
+  var $jq= jQuery.noConflict(); //jquery 重新定義
+//-->
+</script>
+
+
+<script >
+function jQueryCalendar(){
+	var dateField = jQuery('input[id^="RC_"]');
+	try {
+	  dateField.datepicker("destroy"); //先移除
+	  $jq(".Calendar_Button").remove();
+	}
+	catch(e){}
+	try {
+	dateField.datepicker();
+	}
+	catch(e){}
+}
+jQuery(function() {
+	// 小月曆
+	jQueryCalendar();
+});
+</script>
+
+
+<div id="_P_POPUPDIV" style="display:none">
+</div>
+<div id="process_container" style="display:none"> 
+	<div id="process_loader"> 
+	 <div id="process_text"> </div> 
+	</div>
+</div> 
+<script>
+//處理中
+var p_processid;
+var process_pos=0; 
+var process_dir=2; 
+var process_len=0;
+function doProcessloader(mesg){
+	
+	//p_processid = setInterval("process_animate()",20);
+	popup("process_container");
+	var hh =document.body.clientHeight;
+	var ww = document.body.clientWidth;
+	hh = (hh/2) - 10 ;
+	ww =0;
+	document.getElementById("process_container").style.top=hh+'px';
+	document.getElementById("process_container").style.left=ww+'px';
+	if (mesg != ""){
+	   document.getElementById("process_loader").style.display="block";
+	   document.getElementById("process_text").innerHTML = "<center><storng><h3>《"+mesg+"》</h3></storng></center>";
+	}
+	else {
+		document.getElementById("process_loader").style.display="none";
+	}
+	
+}
+function process_animate() 
+{ 
+   var elem = document.getElementById('progress'); 
+   if(elem != null) { 
+	if (process_pos==0) process_len += process_dir; 
+	if (process_len>32 || process_pos>79) process_pos += process_dir; 
+	if (process_pos>79) process_len -= process_dir; 
+	if (process_pos>79 && process_len==0) process_pos=0;
+	
+	elem.style.left = 300+process_pos; 
+	elem.style.width = process_len;
+	//document.getElementById("process_text").innerHTML = "<center>left:"+process_pos+",width:"+process_len+"</center>";
+   } 
+} 
+function removeProcessloader() { 
+	//this.clearInterval(p_processid);
+	popup("process_container");
+}
+</script> 
+
+
+
+
+<div class='result-box'>
+<div class="pagination"><form id='frm_page_head_20190907105650949001' method=post><div class="col"><span>每頁筆數&nbsp;</span><select  id='P_PAGE_SIZE'  name='P_PAGE_SIZE'   onchange=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',227,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7');} else { alert('資料尚未儲存,無法進行下一步驟!!');}"     value='40'" value="40"       ><option value='10'  >10筆</option><option value='20'  >20筆</option><option value='30'  >30筆</option><option value='40' selected >40筆</option></select><input type="HIDDEN" id="P_CUR_PAGE"   name="P_CUR_PAGE"  value=""  ></div><div class="col"><ul class="page-num"><li><a href='#' class="btn-arrow" onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',1,mainDiv'560eb2e02f3ca635e98ecca5bb1d4ff7');} else { alert('資料尚未儲存,無法進行下一步驟!!');}" class="btn-arrow">第一頁</a></li> <li ><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',226,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7');} else { alert('資料尚未儲存,無法進行下一步驟!!');}" class="btn-arrow">上一頁</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',221,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >221</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',222,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >222</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',223,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >223</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',224,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >224</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',225,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >225</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',226,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >226</a></li><li class="active"><a href='#'>227</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',228,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >228</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',229,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >229</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',230,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >230</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',231,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}" >231</a></li><li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',228,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7')} else { alert('資料尚未儲存,無法進行下一步驟!!');}" class="btn-arrow">下一頁</a></li> <li><a href='#' onclick=" if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',314,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7')} else { alert('資料尚未儲存,無法進行下一步驟!!');}" class="btn-arrow">最末頁</a></li> </ul></div><div class="col"><span>跳至第&nbsp;</span><input type=number size=4 maxlength=6 value="227"  class='text-right' onchange=" var curvalue = this.value;if ((eval(curvalue) >= 1) && (eval(curvalue) <=314)){ if (Public_CheckSaveStatus('40')){nextPageaJax(frm_page_head_20190907105650949001,'/tccmoapply/queryAjax.do?queryparammode=true&',this.value,mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); } else { alert('資料尚未儲存,無法進行下一步驟!!');}} else {alert('無法跳至此頁,請確認'); this.select();this.focus();}"><span>&nbsp;頁</span></div><div class="col"><span>目前 第&nbsp;<span class="colorBk">227</span>&nbsp;頁</span> <span>/&nbsp;共&nbsp;<span class="colorBk">314</span>&nbsp;頁 </span> <span>/&nbsp;共&nbsp;<span class="colorBk">12522</span>&nbsp;筆</span></div> <input type="HIDDEN" id="cur_page"   name="cur_page"  value="227"  ></form></div><script>
+ function reloadAjaxQuery() {
+ reloadPageaJax(frm_page_head_20190907105650949001,ContextPath+"/requeryAjax.do",mainDiv,'560eb2e02f3ca635e98ecca5bb1d4ff7'); 
+   } 
+</script>
+
+<div id="body_table" class="body-table">
+<tr><td colSpan=9 align='CENTER'>
+<form id=frm_modify_mutiRow method=post    >
+<table id='c703c62dcaea9ef655c9f33af8a29320'  class='table' >
+<thead>
+<tr >
+<th     width='5%'>查報日期</th>
+<th     width='8%'>查報文號</th>
+<th     width='5%'>行政區</th>
+<th     width='20%'>違建地址</th>
+<th     width='5%'>查報資料明細</th>
+</tr>
+</thead>
+<tbody>
+<tr >
+<input type="HIDDEN" id="P_0_Row_MainTain_Type"   name="P_0_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0921110
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50754900
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+光復北路214號3樓陽台（松乙國宅）
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_0 value='查報資料明細' onclick='run_view("092","50754900");'><br>
+</td>
+<input type="HIDDEN" id="$0_SQU_SEQNO"   name="$0_SQU_SEQNO"  value="AAAOUZAAIAAAuYRAAV"  >
+<input type="HIDDEN" id="$0_SQU_PIC"   name="$0_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$0_DOC_SEQ_YY"   name="$0_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$0_DOC_SEQ_NO"   name="$0_DOC_SEQ_NO"  value="50754900"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_1_Row_MainTain_Type"   name="P_1_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0931217
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50807400
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+新東街30巷36號7樓頂
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_1 value='查報資料明細' onclick='run_view("093","50807400");'><br>
+</td>
+<input type="HIDDEN" id="$1_SQU_SEQNO"   name="$1_SQU_SEQNO"  value="AAAOUZAAIAAAudpAAJ"  >
+<input type="HIDDEN" id="$1_SQU_PIC"   name="$1_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$1_DOC_SEQ_YY"   name="$1_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$1_DOC_SEQ_NO"   name="$1_DOC_SEQ_NO"  value="50807400"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_2_Row_MainTain_Type"   name="P_2_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920311
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50087900
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+八德路二段437巷6弄1號1樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_2 value='查報資料明細' onclick='run_view("092","50087900");'><br>
+</td>
+<input type="HIDDEN" id="$2_SQU_SEQNO"   name="$2_SQU_SEQNO"  value="AAAOUZAAIAAAuVVAAG"  >
+<input type="HIDDEN" id="$2_SQU_PIC"   name="$2_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$2_DOC_SEQ_YY"   name="$2_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$2_DOC_SEQ_NO"   name="$2_DOC_SEQ_NO"  value="50087900"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_3_Row_MainTain_Type"   name="P_3_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+1010524
+</td>
+<td     class='text-center'   data-name='查報文號' >
+101-60415900
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+延吉街50號1樓
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_3 value='查報資料明細' onclick='run_view("101","60415900");'><br>
+</td>
+<input type="HIDDEN" id="$3_SQU_SEQNO"   name="$3_SQU_SEQNO"  value="AAAOUZAANAAAS/+AAL"  >
+<input type="HIDDEN" id="$3_SQU_PIC"   name="$3_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$3_DOC_SEQ_YY"   name="$3_DOC_SEQ_YY"  value="101"  >
+<input type="HIDDEN" id="$3_DOC_SEQ_NO"   name="$3_DOC_SEQ_NO"  value="60415900"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_4_Row_MainTain_Type"   name="P_4_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+1010314
+</td>
+<td     class='text-center'   data-name='查報文號' >
+101-61079500
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路五段250巷36弄15號3樓梯間旁
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_4 value='查報資料明細' onclick='run_view("101","61079500");'><br>
+</td>
+<input type="HIDDEN" id="$4_SQU_SEQNO"   name="$4_SQU_SEQNO"  value="AAAOUZAANAAAS//AAB"  >
+<input type="HIDDEN" id="$4_SQU_PIC"   name="$4_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$4_DOC_SEQ_YY"   name="$4_DOC_SEQ_YY"  value="101"  >
+<input type="HIDDEN" id="$4_DOC_SEQ_NO"   name="$4_DOC_SEQ_NO"  value="61079500"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_5_Row_MainTain_Type"   name="P_5_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+1030529
+</td>
+<td     class='text-center'   data-name='查報文號' >
+103-60428300
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+民權東路三段106巷3弄21號5樓頂
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_5 value='查報資料明細' onclick='run_view("103","60428300");'><br>
+</td>
+<input type="HIDDEN" id="$5_SQU_SEQNO"   name="$5_SQU_SEQNO"  value="AAAOUZAARAAAOhgAAa"  >
+<input type="HIDDEN" id="$5_SQU_PIC"   name="$5_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$5_DOC_SEQ_YY"   name="$5_DOC_SEQ_YY"  value="103"  >
+<input type="HIDDEN" id="$5_DOC_SEQ_NO"   name="$5_DOC_SEQ_NO"  value="60428300"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_6_Row_MainTain_Type"   name="P_6_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0930213
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50055400
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路五段59巷31弄14號3樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_6 value='查報資料明細' onclick='run_view("093","50055400");'><br>
+</td>
+<input type="HIDDEN" id="$6_SQU_SEQNO"   name="$6_SQU_SEQNO"  value="AAAOUZAAIAAAuZSAAW"  >
+<input type="HIDDEN" id="$6_SQU_PIC"   name="$6_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$6_DOC_SEQ_YY"   name="$6_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$6_DOC_SEQ_NO"   name="$6_DOC_SEQ_NO"  value="50055400"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_7_Row_MainTain_Type"   name="P_7_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0930115
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50033300
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+八德路二段350號12樓頂
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_7 value='查報資料明細' onclick='run_view("093","50033300");'><br>
+</td>
+<input type="HIDDEN" id="$7_SQU_SEQNO"   name="$7_SQU_SEQNO"  value="AAAOUZAAIAAAuZUAAQ"  >
+<input type="HIDDEN" id="$7_SQU_PIC"   name="$7_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$7_DOC_SEQ_YY"   name="$7_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$7_DOC_SEQ_NO"   name="$7_DOC_SEQ_NO"  value="50033300"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_8_Row_MainTain_Type"   name="P_8_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920602
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50383100
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+饒河街32號1樓後（左）公告
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_8 value='查報資料明細' onclick='run_view("092","50383100");'><br>
+</td>
+<input type="HIDDEN" id="$8_SQU_SEQNO"   name="$8_SQU_SEQNO"  value="AAAOUZAAIAAAuWTAAV"  >
+<input type="HIDDEN" id="$8_SQU_PIC"   name="$8_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$8_DOC_SEQ_YY"   name="$8_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$8_DOC_SEQ_NO"   name="$8_DOC_SEQ_NO"  value="50383100"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_9_Row_MainTain_Type"   name="P_9_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0851121
+</td>
+<td     class='text-center'   data-name='查報文號' >
+085-11734200
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+延壽街378號7樓頂
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_9 value='查報資料明細' onclick='run_view("085","11734200");'><br>
+</td>
+<input type="HIDDEN" id="$9_SQU_SEQNO"   name="$9_SQU_SEQNO"  value="AAAOUZAAHAAAj00AAb"  >
+<input type="HIDDEN" id="$9_SQU_PIC"   name="$9_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$9_DOC_SEQ_YY"   name="$9_DOC_SEQ_YY"  value="085"  >
+<input type="HIDDEN" id="$9_DOC_SEQ_NO"   name="$9_DOC_SEQ_NO"  value="11734200"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_10_Row_MainTain_Type"   name="P_10_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920129
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50037700
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+敦化南路一段80巷29號1樓前
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_10 value='查報資料明細' onclick='run_view("092","50037700");'><br>
+</td>
+<input type="HIDDEN" id="$10_SQU_SEQNO"   name="$10_SQU_SEQNO"  value="AAAOUZAAIAAAuVyAAR"  >
+<input type="HIDDEN" id="$10_SQU_PIC"   name="$10_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$10_DOC_SEQ_YY"   name="$10_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$10_DOC_SEQ_NO"   name="$10_DOC_SEQ_NO"  value="50037700"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_11_Row_MainTain_Type"   name="P_11_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0900612
+</td>
+<td     class='text-center'   data-name='查報文號' >
+090-40326300
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+八德路四段245巷32弄24號1樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_11 value='查報資料明細' onclick='run_view("090","40326300");'><br>
+</td>
+<input type="HIDDEN" id="$11_SQU_SEQNO"   name="$11_SQU_SEQNO"  value="AAAOUZAAIAAAuauAAQ"  >
+<input type="HIDDEN" id="$11_SQU_PIC"   name="$11_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$11_DOC_SEQ_YY"   name="$11_DOC_SEQ_YY"  value="090"  >
+<input type="HIDDEN" id="$11_DOC_SEQ_NO"   name="$11_DOC_SEQ_NO"  value="40326300"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_12_Row_MainTain_Type"   name="P_12_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920109
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50020500
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+光復北路170號4樓頂
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_12 value='查報資料明細' onclick='run_view("092","50020500");'><br>
+</td>
+<input type="HIDDEN" id="$12_SQU_SEQNO"   name="$12_SQU_SEQNO"  value="AAAOUZAAIAAAuV1AAN"  >
+<input type="HIDDEN" id="$12_SQU_PIC"   name="$12_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$12_DOC_SEQ_YY"   name="$12_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$12_DOC_SEQ_NO"   name="$12_DOC_SEQ_NO"  value="50020500"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_13_Row_MainTain_Type"   name="P_13_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920827
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50481300
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+寶清街21之1號8樓
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_13 value='查報資料明細' onclick='run_view("092","50481300");'><br>
+</td>
+<input type="HIDDEN" id="$13_SQU_SEQNO"   name="$13_SQU_SEQNO"  value="AAAOUZAAIAAAuXQAAI"  >
+<input type="HIDDEN" id="$13_SQU_PIC"   name="$13_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$13_DOC_SEQ_YY"   name="$13_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$13_DOC_SEQ_NO"   name="$13_DOC_SEQ_NO"  value="50481300"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_14_Row_MainTain_Type"   name="P_14_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0921020
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50588500
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路五段291巷41弄2號2樓頂
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_14 value='查報資料明細' onclick='run_view("092","50588500");'><br>
+</td>
+<input type="HIDDEN" id="$14_SQU_SEQNO"   name="$14_SQU_SEQNO"  value="AAAOUZAAIAAAuY6AAT"  >
+<input type="HIDDEN" id="$14_SQU_PIC"   name="$14_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$14_DOC_SEQ_YY"   name="$14_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$14_DOC_SEQ_NO"   name="$14_DOC_SEQ_NO"  value="50588500"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_15_Row_MainTain_Type"   name="P_15_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0930430
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50195500
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+三民路108之2號1樓旁間中庭上方
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_15 value='查報資料明細' onclick='run_view("093","50195500");'><br>
+</td>
+<input type="HIDDEN" id="$15_SQU_SEQNO"   name="$15_SQU_SEQNO"  value="AAAOUZAAIAAAuazAAO"  >
+<input type="HIDDEN" id="$15_SQU_PIC"   name="$15_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$15_DOC_SEQ_YY"   name="$15_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$15_DOC_SEQ_NO"   name="$15_DOC_SEQ_NO"  value="50195500"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_16_Row_MainTain_Type"   name="P_16_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0880813
+</td>
+<td     class='text-center'   data-name='查報文號' >
+088-32306100
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+八德路四段245巷32弄45號1樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_16 value='查報資料明細' onclick='run_view("088","32306100");'><br>
+</td>
+<input type="HIDDEN" id="$16_SQU_SEQNO"   name="$16_SQU_SEQNO"  value="AAAOUZAAHAAAj49AAK"  >
+<input type="HIDDEN" id="$16_SQU_PIC"   name="$16_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$16_DOC_SEQ_YY"   name="$16_DOC_SEQ_YY"  value="088"  >
+<input type="HIDDEN" id="$16_DOC_SEQ_NO"   name="$16_DOC_SEQ_NO"  value="32306100"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_17_Row_MainTain_Type"   name="P_17_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0930116
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50029200
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路五段23巷9弄1號1樓一品水餃麵食專賣店旁（撤銷）
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_17 value='查報資料明細' onclick='run_view("093","50029200");'><br>
+</td>
+<input type="HIDDEN" id="$17_SQU_SEQNO"   name="$17_SQU_SEQNO"  value="AAAOUZAAIAAAuZPAAO"  >
+<input type="HIDDEN" id="$17_SQU_PIC"   name="$17_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$17_DOC_SEQ_YY"   name="$17_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$17_DOC_SEQ_NO"   name="$17_DOC_SEQ_NO"  value="50029200"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_18_Row_MainTain_Type"   name="P_18_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0840905
+</td>
+<td     class='text-center'   data-name='查報文號' >
+084-10141600
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路五段291巷35弄37號2樓前
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_18 value='查報資料明細' onclick='run_view("084","10141600");'><br>
+</td>
+<input type="HIDDEN" id="$18_SQU_SEQNO"   name="$18_SQU_SEQNO"  value="AAAOUZAAHAAAjshAAP"  >
+<input type="HIDDEN" id="$18_SQU_PIC"   name="$18_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$18_DOC_SEQ_YY"   name="$18_DOC_SEQ_YY"  value="084"  >
+<input type="HIDDEN" id="$18_DOC_SEQ_NO"   name="$18_DOC_SEQ_NO"  value="10141600"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_19_Row_MainTain_Type"   name="P_19_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0900622
+</td>
+<td     class='text-center'   data-name='查報文號' >
+090-40342200
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+八德路四段245巷26號1樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_19 value='查報資料明細' onclick='run_view("090","40342200");'><br>
+</td>
+<input type="HIDDEN" id="$19_SQU_SEQNO"   name="$19_SQU_SEQNO"  value="AAAOUZAAIAAAubFAAE"  >
+<input type="HIDDEN" id="$19_SQU_PIC"   name="$19_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$19_DOC_SEQ_YY"   name="$19_DOC_SEQ_YY"  value="090"  >
+<input type="HIDDEN" id="$19_DOC_SEQ_NO"   name="$19_DOC_SEQ_NO"  value="40342200"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_20_Row_MainTain_Type"   name="P_20_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0921029
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50213600
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+光復南路66巷10號1樓後(雙側)
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_20 value='查報資料明細' onclick='run_view("092","50213600");'><br>
+</td>
+<input type="HIDDEN" id="$20_SQU_SEQNO"   name="$20_SQU_SEQNO"  value="AAAOUZAAIAAAuYvAAN"  >
+<input type="HIDDEN" id="$20_SQU_PIC"   name="$20_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$20_DOC_SEQ_YY"   name="$20_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$20_DOC_SEQ_NO"   name="$20_DOC_SEQ_NO"  value="50213600"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_21_Row_MainTain_Type"   name="P_21_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920930
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50623200
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+敦化北路4巷13號1樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_21 value='查報資料明細' onclick='run_view("092","50623200");'><br>
+</td>
+<input type="HIDDEN" id="$21_SQU_SEQNO"   name="$21_SQU_SEQNO"  value="AAAOUZAAIAAAuYxAAS"  >
+<input type="HIDDEN" id="$21_SQU_PIC"   name="$21_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$21_DOC_SEQ_YY"   name="$21_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$21_DOC_SEQ_NO"   name="$21_DOC_SEQ_NO"  value="50623200"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_22_Row_MainTain_Type"   name="P_22_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0930120
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50039400
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+光復北路230巷57號3樓陽台（松乙國宅）
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_22 value='查報資料明細' onclick='run_view("093","50039400");'><br>
+</td>
+<input type="HIDDEN" id="$22_SQU_SEQNO"   name="$22_SQU_SEQNO"  value="AAAOUZAAIAAAuZfAAW"  >
+<input type="HIDDEN" id="$22_SQU_PIC"   name="$22_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$22_DOC_SEQ_YY"   name="$22_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$22_DOC_SEQ_NO"   name="$22_DOC_SEQ_NO"  value="50039400"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_23_Row_MainTain_Type"   name="P_23_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0911202
+</td>
+<td     class='text-center'   data-name='查報文號' >
+091-50596800
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+民生東路三段130巷10號1樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_23 value='查報資料明細' onclick='run_view("091","50596800");'><br>
+</td>
+<input type="HIDDEN" id="$23_SQU_SEQNO"   name="$23_SQU_SEQNO"  value="AAAOUZAAIAAAuVsAAO"  >
+<input type="HIDDEN" id="$23_SQU_PIC"   name="$23_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$23_DOC_SEQ_YY"   name="$23_DOC_SEQ_YY"  value="091"  >
+<input type="HIDDEN" id="$23_DOC_SEQ_NO"   name="$23_DOC_SEQ_NO"  value="50596800"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_24_Row_MainTain_Type"   name="P_24_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0921110
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50216100
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+寶清街30巷6號1樓後(雙側)
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_24 value='查報資料明細' onclick='run_view("092","50216100");'><br>
+</td>
+<input type="HIDDEN" id="$24_SQU_SEQNO"   name="$24_SQU_SEQNO"  value="AAAOUZAAIAAAuYRAAL"  >
+<input type="HIDDEN" id="$24_SQU_PIC"   name="$24_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$24_DOC_SEQ_YY"   name="$24_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$24_DOC_SEQ_NO"   name="$24_DOC_SEQ_NO"  value="50216100"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_25_Row_MainTain_Type"   name="P_25_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0921218
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50828200
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+新東街26巷44號3樓
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_25 value='查報資料明細' onclick='run_view("092","50828200");'><br>
+</td>
+<input type="HIDDEN" id="$25_SQU_SEQNO"   name="$25_SQU_SEQNO"  value="AAAOUZAAIAAAuZ3AAT"  >
+<input type="HIDDEN" id="$25_SQU_PIC"   name="$25_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$25_DOC_SEQ_YY"   name="$25_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$25_DOC_SEQ_NO"   name="$25_DOC_SEQ_NO"  value="50828200"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_26_Row_MainTain_Type"   name="P_26_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0921103
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50754600
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+敦化北路333巷12弄1號對面（第二層）
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_26 value='查報資料明細' onclick='run_view("092","50754600");'><br>
+</td>
+<input type="HIDDEN" id="$26_SQU_SEQNO"   name="$26_SQU_SEQNO"  value="AAAOUZAAIAAAuY7AAF"  >
+<input type="HIDDEN" id="$26_SQU_PIC"   name="$26_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$26_DOC_SEQ_YY"   name="$26_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$26_DOC_SEQ_NO"   name="$26_DOC_SEQ_NO"  value="50754600"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_27_Row_MainTain_Type"   name="P_27_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0930308
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50106700
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+光復北路230巷57號5樓（松乙國宅）
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_27 value='查報資料明細' onclick='run_view("093","50106700");'><br>
+</td>
+<input type="HIDDEN" id="$27_SQU_SEQNO"   name="$27_SQU_SEQNO"  value="AAAOUZAAIAAAuakAAT"  >
+<input type="HIDDEN" id="$27_SQU_PIC"   name="$27_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$27_DOC_SEQ_YY"   name="$27_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$27_DOC_SEQ_NO"   name="$27_DOC_SEQ_NO"  value="50106700"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_28_Row_MainTain_Type"   name="P_28_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920422
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50207500
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路四段52巷14號1樓後(單側)
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_28 value='查報資料明細' onclick='run_view("092","50207500");'><br>
+</td>
+<input type="HIDDEN" id="$28_SQU_SEQNO"   name="$28_SQU_SEQNO"  value="AAAOUZAAIAAAuW9AAE"  >
+<input type="HIDDEN" id="$28_SQU_PIC"   name="$28_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$28_DOC_SEQ_YY"   name="$28_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$28_DOC_SEQ_NO"   name="$28_DOC_SEQ_NO"  value="50207500"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_29_Row_MainTain_Type"   name="P_29_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920421
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50281800
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+民生東路三段130巷18弄2號1樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_29 value='查報資料明細' onclick='run_view("092","50281800");'><br>
+</td>
+<input type="HIDDEN" id="$29_SQU_SEQNO"   name="$29_SQU_SEQNO"  value="AAAOUZAAIAAAuW9AAN"  >
+<input type="HIDDEN" id="$29_SQU_PIC"   name="$29_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$29_DOC_SEQ_YY"   name="$29_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$29_DOC_SEQ_NO"   name="$29_DOC_SEQ_NO"  value="50281800"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_30_Row_MainTain_Type"   name="P_30_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0931222
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50435700
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+敦化北路222巷25之1號3樓旁
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_30 value='查報資料明細' onclick='run_view("093","50435700");'><br>
+</td>
+<input type="HIDDEN" id="$30_SQU_SEQNO"   name="$30_SQU_SEQNO"  value="AAAOUZAAIAAAud5AAO"  >
+<input type="HIDDEN" id="$30_SQU_PIC"   name="$30_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$30_DOC_SEQ_YY"   name="$30_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$30_DOC_SEQ_NO"   name="$30_DOC_SEQ_NO"  value="50435700"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_31_Row_MainTain_Type"   name="P_31_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0920818
+</td>
+<td     class='text-center'   data-name='查報文號' >
+092-50480800
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+民權東路三段106巷15弄13號4樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_31 value='查報資料明細' onclick='run_view("092","50480800");'><br>
+</td>
+<input type="HIDDEN" id="$31_SQU_SEQNO"   name="$31_SQU_SEQNO"  value="AAAOUZAAIAAAuXrAAS"  >
+<input type="HIDDEN" id="$31_SQU_PIC"   name="$31_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$31_DOC_SEQ_YY"   name="$31_DOC_SEQ_YY"  value="092"  >
+<input type="HIDDEN" id="$31_DOC_SEQ_NO"   name="$31_DOC_SEQ_NO"  value="50480800"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_32_Row_MainTain_Type"   name="P_32_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0940513
+</td>
+<td     class='text-center'   data-name='查報文號' >
+094-50186800
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+新東街1巷8號4樓頂
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_32 value='查報資料明細' onclick='run_view("094","50186800");'><br>
+</td>
+<input type="HIDDEN" id="$32_SQU_SEQNO"   name="$32_SQU_SEQNO"  value="AAAOUZAAHAAAkJDAAO"  >
+<input type="HIDDEN" id="$32_SQU_PIC"   name="$32_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$32_DOC_SEQ_YY"   name="$32_DOC_SEQ_YY"  value="094"  >
+<input type="HIDDEN" id="$32_DOC_SEQ_NO"   name="$32_DOC_SEQ_NO"  value="50186800"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_33_Row_MainTain_Type"   name="P_33_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0901228
+</td>
+<td     class='text-center'   data-name='查報文號' >
+090-40713200
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+光復南路46巷53號1樓後(雙側)
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_33 value='查報資料明細' onclick='run_view("090","40713200");'><br>
+</td>
+<input type="HIDDEN" id="$33_SQU_SEQNO"   name="$33_SQU_SEQNO"  value="AAAOUZAAIAAAuQVAAD"  >
+<input type="HIDDEN" id="$33_SQU_PIC"   name="$33_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$33_DOC_SEQ_YY"   name="$33_DOC_SEQ_YY"  value="090"  >
+<input type="HIDDEN" id="$33_DOC_SEQ_NO"   name="$33_DOC_SEQ_NO"  value="40713200"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_34_Row_MainTain_Type"   name="P_34_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0910618
+</td>
+<td     class='text-center'   data-name='查報文號' >
+091-50244300
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路三段335巷5之3號1樓後
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_34 value='查報資料明細' onclick='run_view("091","50244300");'><br>
+</td>
+<input type="HIDDEN" id="$34_SQU_SEQNO"   name="$34_SQU_SEQNO"  value="AAAOUZAAIAAAuTkAAK"  >
+<input type="HIDDEN" id="$34_SQU_PIC"   name="$34_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$34_DOC_SEQ_YY"   name="$34_DOC_SEQ_YY"  value="091"  >
+<input type="HIDDEN" id="$34_DOC_SEQ_NO"   name="$34_DOC_SEQ_NO"  value="50244300"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_35_Row_MainTain_Type"   name="P_35_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0930917
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50568000
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路五段411號8樓頂第二層
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_35 value='查報資料明細' onclick='run_view("093","50568000");'><br>
+</td>
+<input type="HIDDEN" id="$35_SQU_SEQNO"   name="$35_SQU_SEQNO"  value="AAAOUZAAIAAAuc8AAV"  >
+<input type="HIDDEN" id="$35_SQU_PIC"   name="$35_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$35_DOC_SEQ_YY"   name="$35_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$35_DOC_SEQ_NO"   name="$35_DOC_SEQ_NO"  value="50568000"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_36_Row_MainTain_Type"   name="P_36_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0930810
+</td>
+<td     class='text-center'   data-name='查報文號' >
+093-50516800
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+光復北路157號1樓前
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_36 value='查報資料明細' onclick='run_view("093","50516800");'><br>
+</td>
+<input type="HIDDEN" id="$36_SQU_SEQNO"   name="$36_SQU_SEQNO"  value="AAAOUZAAIAAAucDAAW"  >
+<input type="HIDDEN" id="$36_SQU_PIC"   name="$36_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$36_DOC_SEQ_YY"   name="$36_DOC_SEQ_YY"  value="093"  >
+<input type="HIDDEN" id="$36_DOC_SEQ_NO"   name="$36_DOC_SEQ_NO"  value="50516800"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_37_Row_MainTain_Type"   name="P_37_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+1021119
+</td>
+<td     class='text-center'   data-name='查報文號' >
+102-60867000
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+健康路325巷18弄2號1樓前
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_37 value='查報資料明細' onclick='run_view("102","60867000");'><br>
+</td>
+<input type="HIDDEN" id="$37_SQU_SEQNO"   name="$37_SQU_SEQNO"  value="AAAOUZAARAAAOjzAAN"  >
+<input type="HIDDEN" id="$37_SQU_PIC"   name="$37_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$37_DOC_SEQ_YY"   name="$37_DOC_SEQ_YY"  value="102"  >
+<input type="HIDDEN" id="$37_DOC_SEQ_NO"   name="$37_DOC_SEQ_NO"  value="60867000"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_38_Row_MainTain_Type"   name="P_38_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0840731
+</td>
+<td     class='text-center'   data-name='查報文號' >
+084-10066200
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+南京東路五段23巷4號1樓旁（防專4-5）
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_38 value='查報資料明細' onclick='run_view("084","10066200");'><br>
+</td>
+<input type="HIDDEN" id="$38_SQU_SEQNO"   name="$38_SQU_SEQNO"  value="AAAOUZAAHAAAjufAAD"  >
+<input type="HIDDEN" id="$38_SQU_PIC"   name="$38_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$38_DOC_SEQ_YY"   name="$38_DOC_SEQ_YY"  value="084"  >
+<input type="HIDDEN" id="$38_DOC_SEQ_NO"   name="$38_DOC_SEQ_NO"  value="10066200"  >
+</tr>
+<tr >
+<input type="HIDDEN" id="P_39_Row_MainTain_Type"   name="P_39_Row_MainTain_Type"  value="S"  >
+<td     class='text-center'   data-name='查報日期' >
+0850103
+</td>
+<td     class='text-center'   data-name='查報文號' >
+085-12003000
+</td>
+<td     class='text-center'   data-name='行政區' >
+松山區
+</td>
+<td     class='text-left'   data-name='違建地址' >
+濱江街432巷9號旁空地
+</td>
+<td     class='text-center'   data-name='查報資料明細' >
+<input type=button class='button_body' name =button_39 value='查報資料明細' onclick='run_view("085","12003000");'><br>
+</td>
+<input type="HIDDEN" id="$39_SQU_SEQNO"   name="$39_SQU_SEQNO"  value="AAAOUZAAHAAAjufAAV"  >
+<input type="HIDDEN" id="$39_SQU_PIC"   name="$39_SQU_PIC"  value=""  >
+<input type="HIDDEN" id="$39_DOC_SEQ_YY"   name="$39_DOC_SEQ_YY"  value="085"  >
+<input type="HIDDEN" id="$39_DOC_SEQ_NO"   name="$39_DOC_SEQ_NO"  value="12003000"  >
+</tr>
+</tbody>
+<tr style='display:none' ></tr></table>
+</form>
+</td></tr>
+<script language='javascript'>
+ var p_startrecords=0;
+</script>
+</div>
+</div>
